@@ -6,10 +6,10 @@ import { Injectable } from '@nestjs/common';
 export class UserRepository {
   constructor(private prismaService: PrismaService) {}
 
-  async getUserByUm(account: string): Promise<User | null> {
+  async getUserByUm(username: string): Promise<User | null> {
     return await this.prismaService.user.findFirst({
       where: {
-        um: account,
+        username: username,
       },
     });
   }

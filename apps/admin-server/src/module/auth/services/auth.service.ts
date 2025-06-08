@@ -14,8 +14,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(account: string, password: string): Promise<User> {
-    const user = await this.userRepository.getUserByUm(account);
+  async validateUser(username: string, password: string): Promise<User> {
+    const user = await this.userRepository.getUserByUm(username);
     if (!user) {
       throw new CustomException('user is not exist!');
     }
@@ -28,7 +28,7 @@ export class AuthService {
 
   async login(user: User): Promise<string> {
     const playload = {
-      username: user.um,
+      username: user.username,
       sub: user.id,
     };
     return await this.jwtService.sign(playload);

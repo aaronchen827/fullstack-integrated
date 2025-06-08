@@ -2,8 +2,7 @@
 CREATE TABLE "t_user" (
     "id" SERIAL NOT NULL,
     "role_id" INTEGER,
-    "um" TEXT NOT NULL,
-    "username" TEXT,
+    "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "department_code" TEXT,
     "mobile" TEXT,

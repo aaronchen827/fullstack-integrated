@@ -16,8 +16,7 @@ datasource db {
 model User {
   id                  Int      @id @default(autoincrement()) @map("id")
   roleId              Int?     @map("role_id")
-  um                  String   @map("um")
-  username            String?  @map("username")
+  username            String   @map("username")
   password            String   @map("password")
   departmentCode      String?  @map("department_code")
   mobile              String?  @map("mobile")

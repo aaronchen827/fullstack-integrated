@@ -26,7 +26,7 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormInputs) => {
     console.log('submit data: ', data)
     const params = {
-      account: data.username,
+      username: data.username,
       password: data.password,
     }
     const json = await fetchClientApi(USER_LOGIN, { data: params })
@@ -59,7 +59,7 @@ export default function LoginForm() {
           </Typography>
 
           <TextField
-            label="account"
+            label="username"
             type="text"
             fullWidth
             variant="outlined"
