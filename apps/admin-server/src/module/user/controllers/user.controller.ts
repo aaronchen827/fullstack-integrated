@@ -25,7 +25,7 @@ export class UserController {
     const accessToken = await this.authService.login(user);
     res.cookie('token', accessToken, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 1000 * 60 * 60 * 24,
       path: '/',
@@ -47,7 +47,7 @@ export class UserController {
     await res.clearCookie('token', {
       httpOnly: true,
       sameSite: 'lax',
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       path: '/',
     });
     return 'success';
