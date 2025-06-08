@@ -17,7 +17,11 @@ export class UserController {
     @Body() dto: LoginDTO,
     @Res({ passthrough: true }) res: Response,
   ): Promise<LoginResponseDTO> {
-    const user = await this.authService.validateUser(dto.username, dto.password);
+    console.log('request api login, param=:', JSON.stringify(dto));
+    const user = await this.authService.validateUser(
+      dto.username,
+      dto.password,
+    );
     const accessToken = await this.authService.login(user);
     res.cookie('token', accessToken, {
       httpOnly: true,
