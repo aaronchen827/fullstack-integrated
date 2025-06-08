@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  Int      @id @default(autoincrement()) @map("id")
+  roleId              Int?     @map("role_id")
+  um                  String   @map("um")
+  username            String?  @map("username")
+  password            String   @map("password")
+  departmentCode      String?  @map("department_code")
+  mobile              String?  @map("mobile")
+  departmentThreeCode String?  @map("department_three_code")
+  departmentFourCode  String?  @map("department_four_code")
+  createTime          DateTime @default(now()) @map("create_time")
+  udpateTime          DateTime @updatedAt @map("udpate_time")
+
+  @@map("t_user")
+}
+
+model Menu {
+  id         Int      @id @default(autoincrement()) @map("id")
+  menuName   String   @map("menu_name")
+  parentId   Int?     @map("parent_id")
+  icon       String?  @map("icon")
+  showStatus Int      @map("show_status")
+  menuLevel  Int?     @map("menu_level")
+  menuUrl    String?  @map("menuUrl")
+  path       String?  @map("path")
+  createTime DateTime @default(now()) @map("create_time")
+  udpateTime DateTime @updatedAt @map("udpate_time")
+
+  @@map("t_menu")
+}
