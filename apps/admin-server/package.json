@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "pnpm start:dev",
-    "prisma:generate": "prisma generate",
+    "prisma:generate": "prisma generate --schema=apps/admin-server/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
