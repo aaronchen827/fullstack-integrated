@@ -8,7 +8,11 @@ import * as cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('admin');
-  const whiteOriginList = ['http://localhost:3000', process.env.FRONTENT_URL];
+  const frontendUrl = process.env.FRONTENT_URL || '';
+  const whiteOriginList = ['http://localhost:3000'];
+  if (frontendUrl) {
+    whiteOriginList.push(frontendUrl);
+  }
   console.log('whiteOriginList=', JSON.stringify(whiteOriginList));
   app.enableCors({
     origin: whiteOriginList,
