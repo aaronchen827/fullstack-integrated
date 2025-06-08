@@ -14,16 +14,11 @@ datasource db {
 }
 
 model User {
-  id                  Int      @id @default(autoincrement()) @map("id")
-  roleId              Int?     @map("role_id")
-  username            String   @map("username")
-  password            String   @map("password")
-  departmentCode      String?  @map("department_code")
-  mobile              String?  @map("mobile")
-  departmentThreeCode String?  @map("department_three_code")
-  departmentFourCode  String?  @map("department_four_code")
-  createTime          DateTime @default(now()) @map("create_time")
-  udpateTime          DateTime @updatedAt @map("udpate_time")
+  id         Int      @id @default(autoincrement()) @map("id")
+  username   String   @map("username")
+  password   String   @map("password")
+  createTime DateTime @default(now()) @map("create_time")
+  udpateTime DateTime @updatedAt @map("udpate_time")
 
   @@map("t_user")
 }
@@ -34,7 +29,6 @@ model Menu {
   parentId   Int?     @map("parent_id")
   icon       String?  @map("icon")
   showStatus Int      @map("show_status")
-  menuLevel  Int?     @map("menu_level")
   menuUrl    String?  @map("menuUrl")
   path       String?  @map("path")
   createTime DateTime @default(now()) @map("create_time")
