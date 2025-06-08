@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "build-admin-server": "turbo run build --filter=admin-server",
+    "start-admin-server": "node dist/apps/admin-server/main.js"
   },
   "keywords": [],
   "author": "",
