@@ -30,7 +30,9 @@ export default function LoginForm() {
       password: data.password,
     }
     const json = await fetchClientApi(USER_LOGIN, { data: params })
+    console.log('login resp: ', json)
     if (json?.accessToken) {
+      console.log('prepare to jump home page')
       setTimeout(() => {
         router.push('/home')
       }, 1000)
