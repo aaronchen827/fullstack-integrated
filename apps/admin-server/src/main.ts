@@ -8,8 +8,10 @@ import * as cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('admin');
+  const whiteOriginList = ['http://localhost:3000', process.env.FRONTENT_URL];
+  console.log('whiteOriginList=', JSON.stringify(whiteOriginList));
   app.enableCors({
-    origin: true,
+    origin: whiteOriginList,
     credentials: true,
   });
   app.use(cookieParser());
@@ -29,7 +31,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
   const port = process.env.PORT || 3001;
-  console.log('execute latest code, port=', port);
   await app.listen(port, '0.0.0.0');
 }
 bootstrap();
