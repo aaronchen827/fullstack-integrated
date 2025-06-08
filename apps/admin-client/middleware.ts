@@ -11,13 +11,12 @@ export function middleware(request: NextRequest) {
   if (publicPaths.includes(pathname)) {
     return NextResponse.next()
   }
-  const token = request.cookies.get('token')
-  console.log('token=', token)
-
-  if (!token) {
-    const loginUrl = new URL('/login', request.url)
-    return NextResponse.redirect(loginUrl)
-  }
+  // const token = request.cookies.get('token')
+  // console.log('token=', token)
+  // if (!token) {
+  //   const loginUrl = new URL('/login', request.url)
+  //   return NextResponse.redirect(loginUrl)
+  // }
   if (!validPages.includes(pathname)) {
     url.pathname = '/not-found'
     return NextResponse.rewrite(url)
