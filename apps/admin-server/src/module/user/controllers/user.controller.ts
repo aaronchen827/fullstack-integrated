@@ -26,7 +26,7 @@ export class UserController {
     res.cookie('token', accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 1000 * 60 * 60 * 24,
       path: '/',
     });
@@ -46,7 +46,7 @@ export class UserController {
   async loginOut(@Res({ passthrough: true }) res: Response) {
     await res.clearCookie('token', {
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: 'none',
       secure: process.env.NODE_ENV === 'production',
       path: '/',
     });
