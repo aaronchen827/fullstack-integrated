@@ -13,6 +13,7 @@ export function middleware(request: NextRequest) {
   }
   const token = request.cookies.get('token')
   console.log('token=', token)
+
   if (!token) {
     const loginUrl = new URL('/login', request.url)
     return NextResponse.redirect(loginUrl)
