@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68936e32-9c5b-41ad-895e-d7b21979d7cf" name="Changes" comment="feature" />
+    <list default="true" id="68936e32-9c5b-41ad-895e-d7b21979d7cf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +17,6 @@
           <entry type="LOCAL">
             <value>
               <list>
-                <branch-info repo="$PROJECT_DIR$/apps/admin-server" source="master" />
-                <branch-info repo="$PROJECT_DIR$" source="master" />
                 <branch-info repo="$PROJECT_DIR$/apps/admin-client" source="master" />
                 <branch-info repo="$PROJECT_DIR$" source="main" />
                 <branch-info repo="$PROJECT_DIR$/apps/admin-client" source="main" />
@@ -28,18 +26,21 @@
         </map>
       </branch-storage>
     </excluded-from-favorite>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/apps/admin-server" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/apps/admin-client/app/mui/page.tsx" root0="SKIP_INSPECTION" />
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/apps/admin-client/package.json" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2xO8HX5rL6ji8c14I5qX0aOO79o" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -50,7 +51,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/aaron/WebstormProjects/fullstack-integrated/apps/admin-server/src/module/auth",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -58,11 +60,13 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.admin-client > dev.executor": "Run",
+    "npm.admin-server > dev FRONTENT_URL=https:www.baidu.com.executor": "Debug",
     "npm.admin-server > dev.executor": "Debug",
     "npm.web > dev.executor": "Run",
+    "prettier.import.notification.dismissed": "true",
     "prettierjs.PrettierConfiguration.Package": "/Users/aaron/WebstormProjects/fullstack-integrated/apps/admin-server/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "/Users/aaron/WebstormProjects/fullstack-integrated/apps/admin-server/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -82,7 +86,7 @@
       <recent name="$PROJECT_DIR$/apps/admin-server/src/module/auth" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.admin-server &gt; dev">
+  <component name="RunManager" selected="npm.admin-client &gt; dev">
     <configuration name="admin-client &gt; dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/apps/admin-client/package.json" />
       <command value="run" />
@@ -100,9 +104,15 @@
         <script value="dev" />
       </scripts>
       <node-interpreter value="project" />
-      <envs />
+      <envs>
+        <env name="FRONTENT_URL" value="https:www.baidu.com" />
+      </envs>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="npm.admin-client &gt; dev" />
+      <item itemvalue="npm.admin-server &gt; dev" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.admin-client &gt; dev" />
@@ -128,38 +138,9 @@
       <workItem from="1747797672649" duration="3979000" />
       <workItem from="1748009501811" duration="92392000" />
       <workItem from="1748764581998" duration="70580000" />
-    </task>
-    <task id="LOCAL-00001" summary="init">
-      <option name="closed" value="true" />
-      <created>1747799426081</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747799426081</updated>
-    </task>
-    <task id="LOCAL-00002" summary="fix start error">
-      <option name="closed" value="true" />
-      <created>1747809045963</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1747809045963</updated>
-    </task>
-    <task id="LOCAL-00003" summary="change">
-      <option name="closed" value="true" />
-      <created>1748086638912</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1748086638912</updated>
-    </task>
-    <task id="LOCAL-00004" summary="finish login interface">
-      <option name="closed" value="true" />
-      <created>1748102051072</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1748102051072</updated>
+      <workItem from="1749349168568" duration="345000" />
+      <workItem from="1749349519399" duration="1024000" />
+      <workItem from="1749356477293" duration="23594000" />
     </task>
     <task id="LOCAL-00005" summary="补充组件">
       <option name="closed" value="true" />
@@ -337,7 +318,223 @@
       <option name="project" value="LOCAL" />
       <updated>1749308494344</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="modify user field">
+      <option name="closed" value="true" />
+      <created>1749356584668</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1749356584668</updated>
+    </task>
+    <task id="LOCAL-00028" summary="modify prisma model">
+      <option name="closed" value="true" />
+      <created>1749357306591</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1749357306591</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fix iframe build error">
+      <option name="closed" value="true" />
+      <created>1749357617991</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1749357617991</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add dynamic">
+      <option name="closed" value="true" />
+      <created>1749358210966</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1749358210966</updated>
+    </task>
+    <task id="LOCAL-00031" summary="modify project title">
+      <option name="closed" value="true" />
+      <created>1749358944160</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1749358944160</updated>
+    </task>
+    <task id="LOCAL-00032" summary="deploy admin-server">
+      <option name="closed" value="true" />
+      <created>1749361619839</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1749361619839</updated>
+    </task>
+    <task id="LOCAL-00033" summary="modify admin-server name">
+      <option name="closed" value="true" />
+      <created>1749362396873</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1749362396873</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix prisma">
+      <option name="closed" value="true" />
+      <created>1749363072833</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1749363072833</updated>
+    </task>
+    <task id="LOCAL-00035" summary="root directory add prisma client">
+      <option name="closed" value="true" />
+      <created>1749364388777</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1749364388777</updated>
+    </task>
+    <task id="LOCAL-00036" summary="unified dependencies">
+      <option name="closed" value="true" />
+      <created>1749365171453</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1749365171453</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix devDependencies conflict">
+      <option name="closed" value="true" />
+      <created>1749365528381</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1749365528381</updated>
+    </task>
+    <task id="LOCAL-00038" summary="change lock file">
+      <option name="closed" value="true" />
+      <created>1749365689528</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1749365689528</updated>
+    </task>
+    <task id="LOCAL-00039" summary="change lock file">
+      <option name="closed" value="true" />
+      <created>1749366842317</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1749366842317</updated>
+    </task>
+    <task id="LOCAL-00040" summary="modify schema.prisma path">
+      <option name="closed" value="true" />
+      <created>1749369217086</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1749369217086</updated>
+    </task>
+    <task id="LOCAL-00041" summary="modify schema.prisma relative path">
+      <option name="closed" value="true" />
+      <created>1749369388240</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1749369388240</updated>
+    </task>
+    <task id="LOCAL-00042" summary="change port">
+      <option name="closed" value="true" />
+      <created>1749370528530</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1749370528530</updated>
+    </task>
+    <task id="LOCAL-00043" summary="inspect latest code">
+      <option name="closed" value="true" />
+      <created>1749370959989</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1749370959989</updated>
+    </task>
+    <task id="LOCAL-00044" summary="cors change">
+      <option name="closed" value="true" />
+      <created>1749371363203</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1749371363203</updated>
+    </task>
+    <task id="LOCAL-00045" summary="add log">
+      <option name="closed" value="true" />
+      <created>1749372393517</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1749372393517</updated>
+    </task>
+    <task id="LOCAL-00046" summary="cors support frontend domain">
+      <option name="closed" value="true" />
+      <created>1749389014922</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1749389014922</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix add domain">
+      <option name="closed" value="true" />
+      <created>1749389429203</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1749389429203</updated>
+    </task>
+    <task id="LOCAL-00048" summary="add log">
+      <option name="closed" value="true" />
+      <created>1749390164625</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1749390164625</updated>
+    </task>
+    <task id="LOCAL-00049" summary="support cookie">
+      <option name="closed" value="true" />
+      <created>1749390564495</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1749390564495</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix cors set-cookie">
+      <option name="closed" value="true" />
+      <created>1749391226539</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1749391226540</updated>
+    </task>
+    <task id="LOCAL-00051" summary="next config proxy">
+      <option name="closed" value="true" />
+      <created>1749392875642</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1749392875642</updated>
+    </task>
+    <task id="LOCAL-00052" summary="trigger deploy">
+      <option name="closed" value="true" />
+      <created>1749393488854</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1749393488854</updated>
+    </task>
+    <task id="LOCAL-00053" summary="remove token judge">
+      <option name="closed" value="true" />
+      <created>1749393620301</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1749393620302</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,12 +548,17 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
                   <option value="master" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="main" />
+                  <option value="origin/main" />
                 </option>
               </RecentGroup>
             </list>
@@ -385,14 +587,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="user">
-                    <value>
-                      <list>
-                        <option value="*" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -406,32 +601,36 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="change" />
-    <MESSAGE value="finish login interface" />
-    <MESSAGE value="补充组件" />
-    <MESSAGE value="add dashboard layout" />
-    <MESSAGE value="add token validate" />
-    <MESSAGE value="处理高亮" />
-    <MESSAGE value="add redux" />
-    <MESSAGE value="feature the jump links" />
-    <MESSAGE value="add scroll panel" />
-    <MESSAGE value="feature scroll bar" />
-    <MESSAGE value="distinct server and client components" />
-    <MESSAGE value="add menu config" />
-    <MESSAGE value="add menu api" />
-    <MESSAGE value="feature api" />
-    <MESSAGE value="add dialog" />
-    <MESSAGE value="fix error" />
-    <MESSAGE value="crud menu" />
-    <MESSAGE value="feature menu" />
-    <MESSAGE value="sidebar path" />
-    <MESSAGE value="fix cookie parse error" />
-    <MESSAGE value="token auth" />
-    <MESSAGE value="fix cors" />
-    <MESSAGE value="feature logout" />
-    <MESSAGE value="init project" />
-    <MESSAGE value="feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/apps/admin-client" />
+      <path value="$PROJECT_DIR$/apps/admin-server" />
+    </ignored-roots>
+    <MESSAGE value="modify user field" />
+    <MESSAGE value="modify prisma model" />
+    <MESSAGE value="fix iframe build error" />
+    <MESSAGE value="add dynamic" />
+    <MESSAGE value="modify project title" />
+    <MESSAGE value="deploy admin-server" />
+    <MESSAGE value="modify admin-server name" />
+    <MESSAGE value="fix prisma" />
+    <MESSAGE value="root directory add prisma client" />
+    <MESSAGE value="unified dependencies" />
+    <MESSAGE value="fix devDependencies conflict" />
+    <MESSAGE value="change lock file" />
+    <MESSAGE value="modify schema.prisma path" />
+    <MESSAGE value="modify schema.prisma relative path" />
+    <MESSAGE value="change port" />
+    <MESSAGE value="inspect latest code" />
+    <MESSAGE value="cors change" />
+    <MESSAGE value="cors support frontend domain" />
+    <MESSAGE value="fix add domain" />
+    <MESSAGE value="add log" />
+    <MESSAGE value="support cookie" />
+    <MESSAGE value="fix cors set-cookie" />
+    <MESSAGE value="next config proxy" />
+    <MESSAGE value="trigger deploy" />
+    <MESSAGE value="remove token judge" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove token judge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -439,25 +638,21 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/admin-client/lib/fetcher/core.ts</url>
           <line>39</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/admin-client/lib/fetcher/core.ts</url>
           <line>33</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/admin-server/src/common/guard/jwt-auth.guard.ts</url>
           <line>16</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/admin-client/lib/fetcher/client.ts</url>
           <line>5</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
