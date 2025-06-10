@@ -31,12 +31,17 @@ export async function baseFetch<T = any>(
     body: method === 'POST' ? JSON.stringify(data) : undefined,
     cache,
   })
-  if (!res.ok) {
-    const errorText = await res.text()
-    console.error(`[fetchApi] ${method} ${endpoint} failed:`, errorText)
-    throw new Error('request failed')
-  }
   const json = await res.json()
+  if (!res.ok) {
+    if (json.code === 401) {
+      console.log('401')
+      setTimeout(() => {
+        window.location.href = '/login'
+      }, 500)
+    } else {
+      throw new Error('request failed')
+    }
+  }
   if (json.code !== 200) {
     return json
   }

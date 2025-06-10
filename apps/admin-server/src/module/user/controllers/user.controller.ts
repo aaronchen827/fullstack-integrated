@@ -4,7 +4,6 @@ import { LoginResponseDTO } from '../dtos/login-response.dto';
 import { LoginDTO } from '../dtos/login.dto';
 import { AuthService } from '../../auth/services/auth.service';
 import { Response } from 'express';
-import { GetUserResponseDTO } from '../dtos/get-user-response.dto';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 
 @Controller('user')
@@ -36,15 +35,15 @@ export class UserController {
   @Post('getUser')
   @ApiOperation({ summary: 'getUser' })
   @UseGuards(JwtAuthGuard)
-  async getUser(@Req() req): Promise<GetUserResponseDTO> {
+  getUser(@Req() req): any {
     return req.user;
   }
 
   @Post('loginOut')
   @ApiOperation({ summary: 'loginOut' })
   @UseGuards(JwtAuthGuard)
-  async loginOut(@Res({ passthrough: true }) res: Response) {
-    await res.clearCookie('token', {
+  loginOut(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('token', {
       httpOnly: true,
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       secure: process.env.NODE_ENV === 'production',

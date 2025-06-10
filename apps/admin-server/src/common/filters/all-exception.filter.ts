@@ -6,6 +6,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { ResultDTO } from '../dtos/result.dto';
+import { CustomException } from '../exceptions/custom.exception';
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
@@ -18,9 +19,11 @@ export class AllExceptionFilter implements ExceptionFilter {
 
     if (exception instanceof HttpException) {
       const resultDTO = new ResultDTO();
-      resultDTO.code = exception.getStatus();
-      resultDTO.message = exception.message;
+      const exceptionResponse = exception.getResponse() as any;
+      resultDTO.code = exceptionResponse.code || exception.getStatus();
+      resultDTO.message = exceptionResponse.message || exception.message;
       response.status(exception.getStatus()).json(resultDTO);
+      return;
     }
   }
 }

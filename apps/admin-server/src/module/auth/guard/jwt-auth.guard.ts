@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
-import { CustomException } from '../../../common/exception/custom.exception';
+import { CustomException } from '../../../common/exceptions/custom.exception';
 
 const whiteList = [{ path: '/admin/user/login', method: 'POST' }];
 
@@ -22,14 +22,14 @@ export class JwtAuthGuard implements CanActivate {
       return true;
     }
 
-    const token = request.cookies['token'];
+    const token: any = request.cookies['token'];
     if (!token) throw new UnauthorizedException('No token found');
     try {
       const payload = await this.jwtService.verifyAsync(token);
       request['user'] = payload; // 可注入到 controller 中使用
       return true;
     } catch (err) {
-      throw new CustomException('Invalid token', 100012);
+      throw new UnauthorizedException('Invalid token');
     }
   }
 }
