@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { CustomException } from '../../../common/exception/custom.exception';
 
 const whiteList = [{ path: '/admin/user/login', method: 'POST' }];
 
@@ -28,7 +29,7 @@ export class JwtAuthGuard implements CanActivate {
       request['user'] = payload; // 可注入到 controller 中使用
       return true;
     } catch (err) {
-      throw new UnauthorizedException('Invalid token');
+      throw new CustomException('Invalid token', 100012);
     }
   }
 }

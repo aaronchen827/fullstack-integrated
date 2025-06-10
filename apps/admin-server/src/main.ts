@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import * as cookieParser from 'cookie-parser';
+import { AllExceptionFilter } from './common/filters/all-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -23,9 +24,11 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       transform: true,
+      forbidNonWhitelisted: true,
     }),
   );
   app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalFilters(new AllExceptionFilter());
   const config = new DocumentBuilder()
     .setTitle('Admin Server')
     .setDescription('Admin Server')

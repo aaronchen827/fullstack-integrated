@@ -1,10 +1,14 @@
-import { Catch, ExceptionFilter, Logger, ArgumentsHost, HttpException } from "@nestjs/common";
+import {
+  Catch,
+  ExceptionFilter,
+  Logger,
+  ArgumentsHost,
+  HttpException,
+} from '@nestjs/common';
 import { ResultDTO } from '../dtos/result.dto';
-
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
-
   private readonly logger = new Logger('AllExceptionFilter');
 
   catch(exception: any, host: ArgumentsHost) {
@@ -19,5 +23,4 @@ export class AllExceptionFilter implements ExceptionFilter {
       response.status(exception.getStatus()).json(resultDTO);
     }
   }
-
 }
