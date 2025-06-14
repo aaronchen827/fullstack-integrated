@@ -8,6 +8,7 @@ import { findPathToNode } from '@/utils/menu.util'
 import { setSelectedKey } from '@/store/slices/MenuSlice'
 import { fetchClientApi } from '@/lib/fetcher/client'
 import { useEffect, useState } from 'react'
+import { Box, alpha } from '@mui/material'
 
 export default function Sidebar() {
   const [menuData, setMenuData] = useState([])
@@ -38,12 +39,46 @@ export default function Sidebar() {
   }, [pathname])
 
   if (!menuData) return null
+
   return (
-    <div className="w-88 bg-[#354152] text-white min-h-screen">
+    <Box
+      sx={{
+        width: 280,
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        bgcolor: 'background.paper',
+        borderRight: '1px solid',
+        borderColor: 'divider',
+        transition: 'all 0.2s',
+        '&:hover': {
+          boxShadow: (theme) => `0 0 20px ${alpha(theme.palette.common.black, 0.05)}`,
+        },
+      }}
+    >
       <Logo />
-      <div className="mt-2">
+      <Box
+        sx={{
+          flex: 1,
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          '&::-webkit-scrollbar': {
+            width: '4px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: 'transparent',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: (theme) => alpha(theme.palette.primary.main, 0.2),
+            borderRadius: '4px',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            background: (theme) => alpha(theme.palette.primary.main, 0.3),
+          },
+        }}
+      >
         <MenuList menuList={menuData} level={0} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

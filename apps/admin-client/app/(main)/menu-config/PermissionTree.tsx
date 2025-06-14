@@ -25,6 +25,7 @@ type Props = {
 }
 
 export default function PermissionTree({ menuConfigData }: Props) {
+  const frontendUrl = process.env.FRONTENT_URL || 'http://localhost:3000'
   const [data, setData] = useState<MenuItem[]>([])
   useEffect(() => {
     const temp: MenuItem[] = [
@@ -99,10 +100,11 @@ export default function PermissionTree({ menuConfigData }: Props) {
                   }}
                 >
                   <a
-                    href={`http://localhost:3000${node.path}`}
+                    href={`${frontendUrl}${node.path}`}
                     target="_blank"
                     style={{ textDecoration: 'none', color: 'inherit' }}
                   >
+                    {frontendUrl}
                     {node.path}
                   </a>
                 </Typography>
