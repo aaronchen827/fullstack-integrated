@@ -5,9 +5,10 @@ import { MenuModule } from './module/menu/menu.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './module/auth/guard/jwt-auth.guard';
 import { AuthModule } from './module/auth/auth.module';
+import { RoleModule } from './module/role/role.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, MenuModule, AuthModule],
+  imports: [UserModule, PrismaModule, MenuModule, AuthModule, RoleModule],
   controllers: [],
   providers: [
     {

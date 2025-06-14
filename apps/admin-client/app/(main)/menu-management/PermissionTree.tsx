@@ -6,9 +6,13 @@ import { TreeItem, TreeView } from '@mui/x-tree-view'
 import { Box, Button, Typography, IconButton, Tooltip, alpha } from '@mui/material'
 import { Add, Edit, Delete } from '@mui/icons-material'
 import { ChevronRight, ExpandMore } from '@mui/icons-material'
-import EditDialog from '@/app/(main)/menu-config/EditDialog'
+import EditDialog from '@/app/(main)/menu-management/EditDialog'
 import { fetchClientApi } from '@/lib/fetcher/client'
-import { GET_MENU_CONFIG_ADD, GET_MENU_CONFIG_DELETE } from '@/lib/constants'
+import {
+  GET_MENU_CONFIG_ADD,
+  GET_MENU_CONFIG_DELETE,
+  GET_MENU_CONFIG_SELECT_ALL,
+} from '@/lib/constants'
 
 type MenuItem = {
   id: number
@@ -20,11 +24,18 @@ type MenuItem = {
   subList?: MenuItem[]
 }
 
-type Props = {
-  menuConfigData: MenuItem[]
-}
+export default function PermissionTree() {
+  const [menuConfigData, setMenuConfigData] = useState([])
 
-export default function PermissionTree({ menuConfigData }: Props) {
+  const getMenuConfigData = async (): Promise<void> => {
+    const resp = await fetchClientApi(GET_MENU_CONFIG_SELECT_ALL)
+    setMenuConfigData(resp)
+  }
+
+  useEffect(() => {
+    getMenuConfigData()
+  }, [])
+
   const frontendUrl = process.env.FRONTENT_URL || 'http://localhost:3000'
   const [data, setData] = useState<MenuItem[]>([])
   useEffect(() => {
@@ -204,7 +215,7 @@ export default function PermissionTree({ menuConfigData }: Props) {
     }
     await fetchClientApi(GET_MENU_CONFIG_ADD, { data: saveData })
     onClose()
-    window.location.reload()
+    getMenuConfigData()
   }
 
   const handleDelete = async () => {
@@ -213,7 +224,7 @@ export default function PermissionTree({ menuConfigData }: Props) {
     }
     await fetchClientApi(GET_MENU_CONFIG_DELETE, { data: saveData })
     onClose()
-    window.location.reload()
+    getMenuConfigData()
   }
 
   const onClose = () => {

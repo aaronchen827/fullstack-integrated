@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  ParseIntPipe,
-} from '@nestjs/common';
+import { Controller, Post, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { CreateRoleDto } from './dtos/create-role.dto';
 import { UpdateRoleDto } from './dtos/update-role.dto';
@@ -18,21 +9,21 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
-  @Post()
+  @Post('create')
   @ApiOperation({ summary: 'Create a new role' })
   @ApiResponse({ status: 201, description: 'Role created successfully' })
   create(@Body() createRoleDto: CreateRoleDto) {
     return this.roleService.create(createRoleDto);
   }
 
-  @Get()
+  @Post('findAll')
   @ApiOperation({ summary: 'Get all roles' })
   @ApiResponse({ status: 200, description: 'Return all roles' })
   findAll() {
     return this.roleService.findAll();
   }
 
-  @Get(':id')
+  @Post('findRole')
   @ApiOperation({ summary: 'Get a role by id' })
   @ApiResponse({ status: 200, description: 'Return the role' })
   @ApiResponse({ status: 404, description: 'Role not found' })
@@ -40,7 +31,7 @@ export class RoleController {
     return this.roleService.findOne(id);
   }
 
-  @Patch(':id')
+  @Post('update/:id')
   @ApiOperation({ summary: 'Update a role' })
   @ApiResponse({ status: 200, description: 'Role updated successfully' })
   @ApiResponse({ status: 404, description: 'Role not found' })
@@ -51,7 +42,7 @@ export class RoleController {
     return this.roleService.update(id, updateRoleDto);
   }
 
-  @Delete(':id')
+  @Post('delete/:id')
   @ApiOperation({ summary: 'Delete a role' })
   @ApiResponse({ status: 200, description: 'Role deleted successfully' })
   @ApiResponse({ status: 404, description: 'Role not found' })

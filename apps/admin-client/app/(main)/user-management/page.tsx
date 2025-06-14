@@ -55,9 +55,8 @@ export default function UserManagementPage() {
 
   const fetchRoles = React.useCallback(async () => {
     try {
-      const response = await fetch('/admin/role')
-      const data = await response.json()
-      setRoles(data)
+      const response = await fetchClientApi('/admin/role/findAll')
+      setRoles(response)
     } catch (error) {
       console.error('Failed to fetch roles:', error)
     }

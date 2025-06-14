@@ -54,7 +54,7 @@ const StatCard = ({ title, value, icon, color }: any) => {
   )
 }
 
-export default function HomePage() {
+export default function DashboardPage() {
   const theme = useTheme()
 
   return (

@@ -18,6 +18,7 @@ import {
 } from '@mui/material'
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material'
 import RoleDialog from './RoleDialog'
+import { fetchClientApi } from '@/lib/fetcher/client'
 
 type Role = {
   id: number
@@ -47,9 +48,8 @@ export default function RoleManagementPage() {
 
   const fetchRoles = React.useCallback(async () => {
     try {
-      const response = await fetch('/admin/role')
-      const data = await response.json()
-      setRoles(data)
+      const response = await fetchClientApi('/admin/role/findAll')
+      setRoles(response)
     } catch (error) {
       console.error('Failed to fetch roles:', error)
     }
@@ -57,9 +57,8 @@ export default function RoleManagementPage() {
 
   const fetchMenus = React.useCallback(async () => {
     try {
-      const response = await fetch('/admin/menu')
-      const data = await response.json()
-      setMenus(data)
+      const response = await fetchClientApi('/admin/menu/selectAll')
+      setMenus(response)
     } catch (error) {
       console.error('Failed to fetch menus:', error)
     }
@@ -91,17 +90,9 @@ export default function RoleManagementPage() {
   const handleSave = async (roleData: Partial<Role>) => {
     try {
       if (dialogMode === 'add') {
-        await fetch('/admin/role', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(roleData),
-        })
+        await fetchClientApi('/admin/role/create', { data: roleData })
       } else if (dialogMode === 'edit' && currentRole) {
-        await fetch(`/admin/role/${currentRole.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(roleData),
-        })
+        await fetchClientApi(`/admin/role/update/${currentRole.id}`, { data: roleData })
       }
       fetchRoles()
       setDialogOpen(false)
@@ -114,9 +105,7 @@ export default function RoleManagementPage() {
     if (!currentRole) return
 
     try {
-      await fetch(`/admin/role/${currentRole.id}`, {
-        method: 'DELETE',
-      })
+      await fetchClientApi(`/admin/role/delete/${currentRole.id}`)
       fetchRoles()
       setDialogOpen(false)
     } catch (error) {

@@ -50,7 +50,7 @@ export default function LoginForm() {
       const json = await fetchClientApi(USER_LOGIN, { data: params })
       if (json?.accessToken) {
         dispatch(setUserInfo({ username: data.username }))
-        router.push('/home')
+        router.push('/dashboard')
       } else {
         setError(json.message || 'Login failed')
       }
