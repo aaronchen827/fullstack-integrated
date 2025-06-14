@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { TreeItem, TreeView } from '@mui/x-tree-view'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, IconButton, Tooltip, alpha } from '@mui/material'
 import { Add, Edit, Delete } from '@mui/icons-material'
 import { ChevronRight, ExpandMore } from '@mui/icons-material'
 import EditDialog from '@/app/(main)/menu-config/EditDialog'
@@ -62,47 +62,109 @@ export default function PermissionTree({ menuConfigData }: Props) {
         key={node.id}
         nodeId={node.id + ''}
         label={
-          <Box display="flex" justifyContent="space-between" alignItems="center" gap={2}>
-            <Box display="flex">
-              <Typography variant="body2">{node.menuName}</Typography>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            gap={2}
+            sx={{
+              py: 1,
+              px: 1,
+              borderRadius: 1,
+              '&:hover': {
+                bgcolor: (theme) => alpha(theme.palette.primary.main, 0.04),
+              },
+            }}
+          >
+            <Box display="flex" alignItems="center" gap={2}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: node.id === 0 ? 600 : 400,
+                  color: node.id === 0 ? 'primary.main' : 'text.primary',
+                }}
+              >
+                {node.menuName}
+              </Typography>
               {node.path && (!node.subList || node.subList.length === 0) && (
-                <Typography variant="body2" className="pl-3 font-bold text-blue-400">
-                  <a href={`http://localhost:3000${node.path}`} target="_blank">
-                    http://localhost:3000{node.path}
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'primary.main',
+                    fontWeight: 500,
+                    textDecoration: 'none',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                    },
+                  }}
+                >
+                  <a
+                    href={`http://localhost:3000${node.path}`}
+                    target="_blank"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    {node.path}
                   </a>
                 </Typography>
               )}
             </Box>
             {node.id !== 0 && (
               <Box
-                className="flex items-center"
-                display="flex"
-                sx={{ display: 'flex', marginRight: 3 }}
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                  opacity: 0,
+                  transition: 'opacity 0.2s',
+                  '.MuiTreeItem-root:hover &': {
+                    opacity: 1,
+                  },
+                }}
               >
-                <Add
-                  fontSize="small"
-                  color="primary"
-                  onClick={(e) => {
-                    toAdd(node)
-                    e.stopPropagation()
-                  }}
-                />
-                <Edit
-                  fontSize="small"
-                  color="primary"
-                  onClick={(e) => {
-                    toUpdate(node)
-                    e.stopPropagation()
-                  }}
-                />
-                <Delete
-                  fontSize="small"
-                  color="error"
-                  onClick={(e) => {
-                    toDelete(node)
-                    e.stopPropagation()
-                  }}
-                />
+                <Tooltip title="Add Submenu">
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      toAdd(node)
+                      e.stopPropagation()
+                    }}
+                    sx={{
+                      color: 'primary.main',
+                      '&:hover': { bgcolor: 'primary.lighter' },
+                    }}
+                  >
+                    <Add fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Edit Menu">
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      toUpdate(node)
+                      e.stopPropagation()
+                    }}
+                    sx={{
+                      color: 'primary.main',
+                      '&:hover': { bgcolor: 'primary.lighter' },
+                    }}
+                  >
+                    <Edit fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Delete Menu">
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      toDelete(node)
+                      e.stopPropagation()
+                    }}
+                    sx={{
+                      color: 'error.main',
+                      '&:hover': { bgcolor: 'error.lighter' },
+                    }}
+                  >
+                    <Delete fontSize="small" />
+                  </IconButton>
+                </Tooltip>
               </Box>
             )}
           </Box>
@@ -113,7 +175,6 @@ export default function PermissionTree({ menuConfigData }: Props) {
     ))
 
   const toAdd = (menu: any) => {
-    console.log('menu=', JSON.stringify(menu))
     setDialogMode('add')
     const newMenu = {
       parentId: menu ? menu.id : 0,
@@ -123,36 +184,31 @@ export default function PermissionTree({ menuConfigData }: Props) {
   }
 
   const toUpdate = (menu: any) => {
-    console.log('menu=', JSON.stringify(menu))
     setShowDialog(true)
     setCurrentMenu(menu)
     setDialogMode('edit')
   }
 
   const toDelete = (menu: any) => {
-    console.log('menu=', JSON.stringify(menu))
     setShowDialog(true)
     setCurrentMenu(menu)
     setDialogMode('delete')
   }
 
   const handleSave = async () => {
-    console.log('handleSave=', JSON.stringify(currentMenu))
     const saveData = {
       ...currentMenu,
       showStatus: 0,
     }
-    console.log('saveData=', JSON.stringify(saveData))
     await fetchClientApi(GET_MENU_CONFIG_ADD, { data: saveData })
     onClose()
     window.location.reload()
   }
+
   const handleDelete = async () => {
-    console.log('handleDelete=', JSON.stringify(currentMenu))
     const saveData = {
       id: currentMenu.id,
     }
-    console.log('saveData=', JSON.stringify(saveData))
     await fetchClientApi(GET_MENU_CONFIG_DELETE, { data: saveData })
     onClose()
     window.location.reload()
@@ -165,10 +221,23 @@ export default function PermissionTree({ menuConfigData }: Props) {
   }
 
   return (
-    <Box sx={{ padding: 5, border: '1px solid #ededed', minHeight: '80vh' }}>
-      <Button variant="contained" sx={{ margin: 3 }} onClick={() => toAdd(null)}>
-        ADD MENU ITEM
+    <Box>
+      <Button
+        variant="contained"
+        startIcon={<Add />}
+        onClick={() => toAdd(null)}
+        sx={{
+          mb: 3,
+          px: 3,
+          py: 1,
+          borderRadius: 2,
+          textTransform: 'none',
+          fontWeight: 600,
+        }}
+      >
+        Add Menu Item
       </Button>
+
       {showDialog && (
         <EditDialog
           showDialog={showDialog}
@@ -180,9 +249,17 @@ export default function PermissionTree({ menuConfigData }: Props) {
           dialogMode={dialogMode}
         />
       )}
+
       {data && data.length > 0 && (
         <TreeView
-          sx={{ marginLeft: 2, minHeight: 200 }}
+          sx={{
+            minHeight: 200,
+            '& .MuiTreeItem-root': {
+              '& .MuiTreeItem-content': {
+                py: 0.5,
+              },
+            },
+          }}
           defaultCollapseIcon={<ExpandMore />}
           defaultExpandIcon={<ChevronRight />}
           defaultExpanded={getAllNodeIds(data)}

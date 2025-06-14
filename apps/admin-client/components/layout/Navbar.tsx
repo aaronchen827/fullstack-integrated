@@ -183,10 +183,19 @@ export default function Navbar() {
         )}
 
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-          <IconButton color="inherit" aria-label="navigate back" sx={{ mr: 1 }}>
+          <IconButton
+            color="inherit"
+            aria-label="navigate back"
+            sx={{ mr: 1 }}
+            onClick={() => router.back()}
+          >
             <ChevronLeftIcon />
           </IconButton>
-          <IconButton color="inherit" aria-label="navigate forward">
+          <IconButton
+            color="inherit"
+            aria-label="navigate forward"
+            onClick={() => router.forward()}
+          >
             <ChevronRightIcon />
           </IconButton>
         </Box>
