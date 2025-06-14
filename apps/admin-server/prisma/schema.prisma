@@ -15,12 +15,26 @@ datasource db {
 
 model User {
   id         Int      @id @default(autoincrement()) @map("id")
-  username   String   @map("username")
+  username   String   @unique @map("username")
   password   String   @map("password")
+  roleId     Int?     @map("role_id")
+  role       Role?    @relation(fields: [roleId], references: [id])
   createTime DateTime @default(now()) @map("create_time")
-  udpateTime DateTime @updatedAt @map("udpate_time")
+  updateTime DateTime @updatedAt @map("update_time")
 
   @@map("t_user")
+}
+
+model Role {
+  id          Int      @id @default(autoincrement()) @map("id")
+  name        String   @unique @map("name")
+  description String?  @map("description")
+  users       User[]
+  menus       Menu[]
+  createTime  DateTime @default(now()) @map("create_time")
+  updateTime  DateTime @updatedAt @map("update_time")
+
+  @@map("t_role")
 }
 
 model Menu {
@@ -29,10 +43,11 @@ model Menu {
   parentId   Int?     @map("parent_id")
   icon       String?  @map("icon")
   showStatus Int      @map("show_status")
-  menuUrl    String?  @map("menuUrl")
+  menuUrl    String?  @map("menu_url")
   path       String?  @map("path")
+  roles      Role[]
   createTime DateTime @default(now()) @map("create_time")
-  udpateTime DateTime @updatedAt @map("udpate_time")
+  updateTime DateTime @updatedAt @map("update_time")
 
   @@map("t_menu")
 }
