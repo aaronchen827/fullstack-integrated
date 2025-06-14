@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const publicPaths = ['/admin/user/login', '/admin/user/getValidCode', '/mui']
+const publicPaths = ['/admin/user/login', '/mui']
 
-const validPages = ['/home', '/menu-config', '/iframe', '/setting']
+const validPages = [
+  '/home',
+  '/menu-config',
+  '/iframe',
+  '/setting',
+  '/user-management',
+  '/role-management',
+]
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
