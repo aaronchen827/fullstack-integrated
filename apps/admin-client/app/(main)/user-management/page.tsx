@@ -170,12 +170,16 @@ export default function UserManagementPage() {
                 <TableCell>{new Date(user.createTime).toLocaleString()}</TableCell>
                 <TableCell>{new Date(user.updateTime).toLocaleString()}</TableCell>
                 <TableCell align="right">
-                  <IconButton size="small" onClick={() => handleEdit(user)} sx={{ mr: 1 }}>
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                  <IconButton size="small" onClick={() => handleDelete(user)} color="error">
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
+                  {user.username !== 'admin' && (
+                    <>
+                      <IconButton size="small" onClick={() => handleEdit(user)} sx={{ mr: 1 }}>
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton size="small" onClick={() => handleDelete(user)} color="error">
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </>
+                  )}
                 </TableCell>
               </TableRow>
             ))}

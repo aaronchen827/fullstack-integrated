@@ -169,12 +169,16 @@ export default function RoleManagementPage() {
                 <TableCell>{new Date(role.createTime).toLocaleString()}</TableCell>
                 <TableCell>{new Date(role.updateTime).toLocaleString()}</TableCell>
                 <TableCell align="right">
-                  <IconButton size="small" onClick={() => handleEdit(role)} sx={{ mr: 1 }}>
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                  <IconButton size="small" onClick={() => handleDelete(role)} color="error">
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
+                  {role.name !== 'Super Admin' && (
+                    <Box sx={{ display: 'flex' }}>
+                      <IconButton size="small" onClick={() => handleEdit(role)} sx={{ mr: 1 }}>
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton size="small" onClick={() => handleDelete(role)} color="error">
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </Box>
+                  )}
                 </TableCell>
               </TableRow>
             ))}

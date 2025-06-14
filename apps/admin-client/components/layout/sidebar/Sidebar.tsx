@@ -1,7 +1,7 @@
 'use client'
 import Logo from '@/components/layout/sidebar/Logo'
 import MenuList from '@/components/layout/sidebar/MenuList'
-import { GET_MENU_CONFIG_SELECT_ALL } from '@/lib/constants'
+import { GET_MENU_CONFIG_SELECT_ALL, GET_MENU_CONFIG_SELECT_USER_MENU } from '@/lib/constants'
 import { usePathname } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { findPathToNode } from '@/utils/menu.util'
@@ -18,7 +18,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     const getMenuList = async () => {
-      const resp = await fetchClientApi(GET_MENU_CONFIG_SELECT_ALL)
+      const resp = await fetchClientApi('/admin/menu/selectUserMenu')
       setMenuData(resp)
       console.log('menuData=', menuData)
       const paths = findPathToNode(resp, pathname)

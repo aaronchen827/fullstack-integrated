@@ -6,10 +6,14 @@ import { Menu } from '@prisma/client';
 import { MenuDTO } from '../dtos/menu.dto';
 import { isEmpty } from '../../../common/util/ArrayUtil';
 import { DeleteMenuDTO } from '../dtos/delete.dto';
+import { RoleService } from 'src/module/role/role.service';
 
 @Injectable()
 export class MenuService {
-  constructor(private menuRepository: MenuRepository) {}
+  constructor(
+    private menuRepository: MenuRepository,
+    private roleService: RoleService,
+  ) {}
 
   async selectAll(): Promise<MenuDTO[]> {
     const menus: Menu[] = await this.menuRepository.selectAll();
@@ -17,6 +21,36 @@ export class MenuService {
       return [];
     }
     const parentList = menus.filter((menu) => menu.parentId === 0);
+    const menuDTOs: MenuDTO[] = [];
+    parentList.map((menu) => {
+      menuDTOs.push(this.covertToRespVo(menu, menus));
+    });
+    return menuDTOs;
+  }
+
+  async selectByRoleId(roleId: number): Promise<MenuDTO[]> {
+    const role = await this.roleService.findOne(roleId);
+    if (!role) {
+      return [];
+    }
+    const isSuperAdmin = role.name === 'Super Admin';
+    if (!isSuperAdmin && isEmpty(role.menus)) {
+      return [];
+    }
+    const menus: Menu[] = await this.menuRepository.selectAll();
+    if (isEmpty(menus)) {
+      return [];
+    }
+    const validMenuIds = role.menus.map((menu) => menu.id);
+    const parentList = menus.filter((menu) => {
+      if (menu.parentId !== 0) {
+        return false;
+      }
+      if (isSuperAdmin) {
+        return true;
+      }
+      return validMenuIds.includes(menu.id);
+    });
     const menuDTOs: MenuDTO[] = [];
     parentList.map((menu) => {
       menuDTOs.push(this.covertToRespVo(menu, menus));

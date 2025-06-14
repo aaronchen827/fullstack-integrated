@@ -173,26 +173,25 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                 }}
                 disabled={loading}
               />
-              {mode === 'add' && (
-                <TextField
-                  margin="normal"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  value={formData.password}
-                  fullWidth
-                  onChange={handleTextChange}
-                  required
-                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                      '&:hover fieldset': {
-                        borderColor: 'primary.main',
-                      },
+              <TextField
+                margin="normal"
+                label="Password"
+                name="password"
+                type="password"
+                value={formData.password}
+                fullWidth
+                onChange={handleTextChange}
+                required
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      borderColor: 'primary.main',
                     },
-                  }}
-                  disabled={loading}
-                />
-              )}
+                  },
+                }}
+                disabled={loading}
+              />
+
               <FormControl fullWidth margin="normal" disabled={loading}>
                 <InputLabel id="role-label">Role</InputLabel>
                 <Select

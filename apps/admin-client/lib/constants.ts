@@ -1,5 +1,7 @@
 export const GET_MENU_CONFIG_SELECT_ALL = '/admin/menu/selectAll'
 
+export const GET_MENU_CONFIG_SELECT_USER_MENU = '/admin/menu/selectUserMenu'
+
 export const GET_MENU_CONFIG_ADD = '/admin/menu/addMenuConfig'
 
 export const GET_MENU_CONFIG_DELETE = '/admin/menu/deleteMenuConfig'

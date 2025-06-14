@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Req } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 import { MenuService } from '../services/menu.service';
 import { AddMenuDTO } from '../dtos/addMenu.dto';
@@ -24,5 +24,16 @@ export class MenuController {
   @ApiOperation({ summary: 'selectAll' })
   async selectAll(): Promise<any> {
     return await this.menuService.selectAll();
+  }
+
+  @Post('selectUserMenu')
+  @ApiOperation({ summary: 'selectUserMenu' })
+  async selectUserMenu(@Req() req): Promise<any> {
+    console.log('selectUserMenu user=', req.user);
+    const roleId: number = req?.user?.role;
+    if (!roleId) {
+      return [];
+    }
+    return await this.menuService.selectByRoleId(roleId);
   }
 }

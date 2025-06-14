@@ -43,19 +43,6 @@ type Props = {
   onDelete: () => void
 }
 
-// Available permissions for roles
-const AVAILABLE_PERMISSIONS = [
-  'user:read',
-  'user:write',
-  'user:delete',
-  'role:read',
-  'role:write',
-  'role:delete',
-  'menu:read',
-  'menu:write',
-  'menu:delete',
-]
-
 export default function RoleDialog({ open, mode, role, menus, onClose, onSave, onDelete }: Props) {
   const [formData, setFormData] = useState<Partial<Role>>({
     name: '',

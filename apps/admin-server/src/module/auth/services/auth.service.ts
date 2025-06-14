@@ -30,6 +30,7 @@ export class AuthService {
     const playload = {
       username: user.username,
       sub: user.id,
+      role: user.roleId,
     };
     return await this.jwtService.sign(playload);
   }
