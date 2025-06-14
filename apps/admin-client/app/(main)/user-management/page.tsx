@@ -17,6 +17,8 @@ import {
 } from '@mui/material'
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material'
 import UserDialog from './UserDialog'
+import { CREATE_USER, DELETE_USER, GET_ALL_USER, UPDATE_USER } from '@/lib/constants'
+import { fetchClientApi } from '@/lib/fetcher/client'
 
 type User = {
   id: number
@@ -44,9 +46,8 @@ export default function UserManagementPage() {
 
   const fetchUsers = React.useCallback(async () => {
     try {
-      const response = await fetch('/admin/user')
-      const data = await response.json()
-      setUsers(data)
+      const response = await fetchClientApi(GET_ALL_USER)
+      setUsers(response)
     } catch (error) {
       console.error('Failed to fetch users:', error)
     }
@@ -65,7 +66,7 @@ export default function UserManagementPage() {
   React.useEffect(() => {
     fetchUsers()
     fetchRoles()
-  }, [fetchUsers, fetchRoles])
+  }, [])
 
   const handleAdd = () => {
     setCurrentUser(null)
@@ -88,17 +89,9 @@ export default function UserManagementPage() {
   const handleSave = async (userData: Partial<User>) => {
     try {
       if (dialogMode === 'add') {
-        await fetch('/admin/user', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(userData),
-        })
+        await fetchClientApi(CREATE_USER, { data: userData })
       } else if (dialogMode === 'edit' && currentUser) {
-        await fetch(`/admin/user/${currentUser.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(userData),
-        })
+        await fetchClientApi(`${UPDATE_USER}/${currentUser.id}`, { data: userData })
       }
       fetchUsers()
       setDialogOpen(false)
@@ -111,9 +104,7 @@ export default function UserManagementPage() {
     if (!currentUser) return
 
     try {
-      await fetch(`/admin/user/${currentUser.id}`, {
-        method: 'DELETE',
-      })
+      await fetchClientApi(`${DELETE_USER}/${currentUser.id}`)
       fetchUsers()
       setDialogOpen(false)
     } catch (error) {

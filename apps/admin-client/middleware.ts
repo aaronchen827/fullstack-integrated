@@ -4,7 +4,7 @@ const publicPaths = ['/admin/user/login', '/mui']
 
 const validPages = [
   '/home',
-  '/menu-config',
+  '/menu-management',
   '/iframe',
   '/setting',
   '/user-management',

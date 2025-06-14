@@ -6,7 +6,7 @@ import {
   Res,
   UseGuards,
   ParseIntPipe,
-  Query,
+  Param,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 import { LoginResponseDTO } from '../dtos/login-response.dto';
@@ -82,30 +82,30 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Post('findUser')
+  @Post('findUser/:id')
   @ApiOperation({ summary: 'Get a user by id' })
   @ApiResponse({ status: 200, description: 'Return the user.' })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  findOne(@Query('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.findOne(id);
   }
 
-  @Post('update')
+  @Post('update/:id')
   @ApiOperation({ summary: 'Update a user' })
   @ApiResponse({ status: 200, description: 'User successfully updated.' })
   @ApiResponse({ status: 404, description: 'User not found.' })
   update(
-    @Query('id', ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
   ) {
     return this.userService.update(id, updateUserDto);
   }
 
-  @Post('delete')
+  @Post('delete/:id')
   @ApiOperation({ summary: 'Delete a user' })
   @ApiResponse({ status: 200, description: 'User successfully deleted.' })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  remove(@Query('id', ParseIntPipe) id: number) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.userService.remove(id);
   }
 }
