@@ -16,19 +16,9 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  CircularProgress,
 } from '@mui/material'
-
-type User = {
-  id: number
-  username: string
-  roleId?: number
-  role?: {
-    id: number
-    name: string
-  }
-  createTime: string
-  updateTime: string
-}
+import { User } from '@/types/user'
 
 type Role = {
   id: number
@@ -57,6 +47,7 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
     password: '',
     roleId: undefined,
   })
+  const [loading, setLoading] = React.useState(false)
 
   React.useEffect(() => {
     if (user) {
@@ -83,9 +74,14 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
     setFormData((prev) => ({ ...prev, roleId: value as number }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    onSave(formData)
+    setLoading(true)
+    try {
+      await onSave(formData)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -124,11 +120,19 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                 textTransform: 'none',
                 fontWeight: 500,
               }}
+              disabled={loading}
             >
               Cancel
             </Button>
             <Button
-              onClick={onDelete}
+              onClick={async () => {
+                setLoading(true)
+                try {
+                  await onSave({})
+                } finally {
+                  setLoading(false)
+                }
+              }}
               color="error"
               variant="contained"
               sx={{
@@ -136,8 +140,9 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                 textTransform: 'none',
                 fontWeight: 500,
               }}
+              disabled={loading}
             >
-              Delete
+              {loading ? <CircularProgress size={24} /> : 'Delete'}
             </Button>
           </DialogActions>
         </>
@@ -166,6 +171,7 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                     },
                   },
                 }}
+                disabled={loading}
               />
               {mode === 'add' && (
                 <TextField
@@ -184,9 +190,10 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                       },
                     },
                   }}
+                  disabled={loading}
                 />
               )}
-              <FormControl fullWidth margin="normal">
+              <FormControl fullWidth margin="normal" disabled={loading}>
                 <InputLabel id="role-label">Role</InputLabel>
                 <Select
                   labelId="role-label"
@@ -215,6 +222,7 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                 textTransform: 'none',
                 fontWeight: 500,
               }}
+              disabled={loading}
             >
               Cancel
             </Button>
@@ -226,8 +234,9 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
                 textTransform: 'none',
                 fontWeight: 500,
               }}
+              disabled={loading}
             >
-              Save Changes
+              {loading ? <CircularProgress size={24} /> : mode === 'add' ? 'Add' : 'Save'}
             </Button>
           </DialogActions>
         </form>

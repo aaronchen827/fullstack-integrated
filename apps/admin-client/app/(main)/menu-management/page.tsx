@@ -35,9 +35,7 @@ export default function MenuConfigPage() {
             bgcolor: 'background.paper',
           }}
         >
-          {menuConfigData && menuConfigData.length > 0 && (
-            <PermissionTree menuConfigData={menuConfigData} />
-          )}
+          <PermissionTree />
         </Paper>
       </Box>
     </Container>

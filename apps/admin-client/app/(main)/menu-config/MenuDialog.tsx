@@ -13,6 +13,7 @@ import {
   Box,
   Typography,
   SelectChangeEvent,
+  CircularProgress,
 } from '@mui/material'
 import { Menu } from '@/types/menu'
 
@@ -33,6 +34,7 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
     menuUrl: '',
     path: '',
   })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (menu) {
@@ -72,9 +74,14 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    onSave(formData)
+    setLoading(true)
+    try {
+      await onSave(formData)
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (mode === 'delete') {
@@ -85,9 +92,22 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
           <Typography>Are you sure you want to delete the menu "{menu?.menuName}"?</Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={() => onSave({})} color="error">
-            Delete
+          <Button onClick={onClose} disabled={loading}>
+            Cancel
+          </Button>
+          <Button
+            onClick={async () => {
+              setLoading(true)
+              try {
+                await onSave({})
+              } finally {
+                setLoading(false)
+              }
+            }}
+            color="error"
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} /> : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>
@@ -107,6 +127,7 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
               onChange={handleTextChange}
               required
               fullWidth
+              disabled={loading}
             />
             <TextField
               name="parentId"
@@ -115,6 +136,7 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
               value={formData.parentId || ''}
               onChange={handleTextChange}
               fullWidth
+              disabled={loading}
             />
             <TextField
               name="icon"
@@ -122,8 +144,9 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
               value={formData.icon || ''}
               onChange={handleTextChange}
               fullWidth
+              disabled={loading}
             />
-            <FormControl fullWidth>
+            <FormControl fullWidth disabled={loading}>
               <InputLabel>Show Status</InputLabel>
               <Select
                 name="showStatus"
@@ -141,6 +164,7 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
               value={formData.menuUrl || ''}
               onChange={handleTextChange}
               fullWidth
+              disabled={loading}
             />
             <TextField
               name="path"
@@ -148,13 +172,16 @@ export function MenuDialog({ open, onClose, onSave, menu, mode }: Props) {
               value={formData.path || ''}
               onChange={handleTextChange}
               fullWidth
+              disabled={loading}
             />
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button type="submit" variant="contained">
-            {mode === 'add' ? 'Add' : 'Save'}
+          <Button onClick={onClose} disabled={loading}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="contained" disabled={loading}>
+            {loading ? <CircularProgress size={24} /> : mode === 'add' ? 'Add' : 'Save'}
           </Button>
         </DialogActions>
       </form>
