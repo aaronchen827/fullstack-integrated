@@ -3,12 +3,17 @@
 import { Box, Grid, Typography, Card, CardContent, Stack, useTheme, alpha } from '@mui/material'
 import { People, Settings, Menu as MenuIcon, CheckCircle } from '@mui/icons-material'
 
+const lastUpdate = () => {
+  const date = new Date()
+  date.setDate(date.getDate() - 10)
+  return date.toISOString().split('T')[0]
+}
 // Mock data - replace with real data from your API
 const stats = {
   totalUsers: 156,
   totalMenus: 24,
   systemStatus: 'Healthy',
-  lastUpdate: '2024-03-20 14:30:00',
+  lastUpdate: lastUpdate(),
 }
 
 const StatCard = ({ title, value, icon, color }: any) => {
