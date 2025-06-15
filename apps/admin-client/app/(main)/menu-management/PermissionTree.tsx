@@ -36,7 +36,7 @@ export default function PermissionTree() {
     getMenuConfigData()
   }, [])
 
-  const frontendUrl = process.env.FRONTENT_URL || 'http://localhost:3000'
+  const frontendUrl = process.env.NEXT_PUBLIC_FRONTENT_URL || 'http://localhost:3000'
   const [data, setData] = useState<MenuItem[]>([])
   useEffect(() => {
     const temp: MenuItem[] = [
