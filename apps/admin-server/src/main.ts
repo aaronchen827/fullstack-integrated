@@ -33,7 +33,7 @@ async function bootstrap() {
     .setDescription('Admin Server')
     .setVersion('1.0')
     .build();
-  //创建文档
+  // Create documentation
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
   const port = process.env.PORT || 3001;

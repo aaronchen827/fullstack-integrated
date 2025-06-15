@@ -1,23 +1,21 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ValidCodeResponseDTO {
-
   @ApiProperty({ description: 'validCodeStr' })
   validCodeStr: string;
 
-  @ApiProperty({ description: "请求requestId" })
+  @ApiProperty({ description: 'Request ID' })
   requestId: string;
 
-  @ApiProperty({ description: "机主校验pageId，用户机主校验" })
+  @ApiProperty({ description: 'Page ID for owner verification' })
   pageId: string;
 
-  @ApiProperty({ description: "pubx，用于um验证" })
+  @ApiProperty({ description: 'pubx for um verification' })
   pubx: string;
 
-  @ApiProperty({ description: "puby，用于um验证" })
+  @ApiProperty({ description: 'puby for um verification' })
   puby: string;
 
-  @ApiProperty({ description: "sharePageCheckFlagUrl" })
+  @ApiProperty({ description: 'sharePageCheckFlagUrl' })
   sharePageCheckFlagUrl: string;
-
 }

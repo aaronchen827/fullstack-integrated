@@ -26,7 +26,7 @@ export class JwtAuthGuard implements CanActivate {
     if (!token) throw new UnauthorizedException('No token found');
     try {
       const payload = await this.jwtService.verifyAsync(token);
-      request['user'] = payload; // 可注入到 controller 中使用
+      request['user'] = payload; // Can be injected into controller
       return true;
     } catch (err) {
       throw new UnauthorizedException('Invalid token');
