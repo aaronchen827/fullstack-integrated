@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  admin-server:
+    build:
+      context: .
+      dockerfile: apps/admin-server/Dockerfile
+    ports:
+      - "3001:3001"
+    networks:
+      - admin-network
+
+  admin-client:
+    build:
+      context: .
+      dockerfile: apps/admin-client/Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - admin-network
+networks:
+  admin-network:
+    driver: bridge
