@@ -1,6 +1,6 @@
 # Fullstack Integrated Admin Dashboard
 
-A modern, full-stack admin dashboard built with Next.js, NestJS, and Material-UI. This project provides a comprehensive solution for user management, role-based access control, and menu configuration.
+A modern, full-stack admin dashboard built with Next.js, NestJS, and Material-UI. This project provides a comprehensive solution for user management, role-based access control, and menu configuration. Built with Turborepo for optimal monorepo management.
 
 ## Features
 
@@ -51,6 +51,14 @@ A modern, full-stack admin dashboard built with Next.js, NestJS, and Material-UI
 - TypeScript
 - JWT Authentication
 
+### Build Tools
+
+- Turborepo
+- pnpm
+- TypeScript
+- ESLint
+- Prettier
+
 ## Project Structure
 
 ```
@@ -60,7 +68,9 @@ fullstack-integrated/
 │   └── admin-server/     # NestJS backend application
 ├── packages/
 │   └── shared/          # Shared utilities and types
-└── docker/              # Docker configuration files
+├── docker/              # Docker configuration files
+├── turbo.json          # Turborepo configuration
+└── pnpm-workspace.yaml # pnpm workspace configuration
 ```
 
 ## Getting Started
@@ -70,6 +80,7 @@ fullstack-integrated/
 - Node.js (v18 or later)
 - PostgreSQL
 - Docker (optional)
+- pnpm (v8 or later)
 
 ### Installation
 
@@ -122,6 +133,14 @@ fullstack-integrated/
 - `pnpm lint` - Run linting
 - `pnpm format` - Format code
 
+### Turborepo Features
+
+- **Incremental Builds**: Only rebuild what changed
+- **Parallel Execution**: Run tasks in parallel
+- **Caching**: Cache build outputs for faster rebuilds
+- **Task Dependencies**: Automatically handle task dependencies
+- **Remote Caching**: Share build caches across team members
+
 ### Code Style
 
 - ESLint for code linting
@@ -150,3 +169,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [NestJS](https://nestjs.com/)
 - [Material-UI](https://mui.com/)
 - [Prisma](https://www.prisma.io/)
+- [Turborepo](https://turbo.build/repo)
