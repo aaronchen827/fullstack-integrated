@@ -39,7 +39,7 @@ export default function Logo() {
             letterSpacing: 0.5,
           }}
         >
-          Operations Configurator
+          Admin Panel
         </Typography>
       </Box>
     </Box>

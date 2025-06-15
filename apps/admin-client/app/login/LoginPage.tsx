@@ -238,7 +238,7 @@ export default function LoginForm() {
           </Button>
 
           <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ mt: 2 }}>
-            Operations Configurator © {new Date().getFullYear()}
+            Admin Dashboard © {new Date().getFullYear()}
           </Typography>
         </Stack>
       </Paper>

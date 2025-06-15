@@ -62,7 +62,7 @@ export default function DashboardPage() {
       <Stack spacing={3}>
         <Box>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Welcome to Operations Configurator
+            Welcome to Admin Dashboard
           </Typography>
           <Typography variant="body1" color="text.secondary">
             Manage your system operations efficiently
