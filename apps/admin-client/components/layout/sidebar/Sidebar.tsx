@@ -77,7 +77,7 @@ export default function Sidebar() {
           },
         }}
       >
-        <MenuList menuList={menuData} level={0} />
+        {menuData.length > 0 && <MenuList menuList={menuData} level={0} />}
       </Box>
     </Box>
   )
