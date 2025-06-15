@@ -7,7 +7,9 @@
 [![NestJS](https://img.shields.io/badge/NestJS-10-red)](https://nestjs.com/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-A modern, full-stack admin dashboard built with Next.js, NestJS, and Material-UI. This project demonstrates my fullstack engineering skills and best practices in building scalable, maintainable applications.
+A modern full-stack admin dashboard template built with **Next.js 14**, **NestJS**, and **Material-UI**. Designed as a scalable, production-ready solution for enterprise-grade admin systems, featuring **RBAC**, **dynamic menus**, and **JWT-based authentication**.
+
+> This project showcases my fullstack engineering skills across architecture design, UI/UX implementation, and DevOps (Docker + CI/CD).
 
 ## 🚀 Live Demo
 
