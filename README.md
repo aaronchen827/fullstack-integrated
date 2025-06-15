@@ -12,6 +12,9 @@ A modern, full-stack admin dashboard built with Next.js, NestJS, and Material-UI
 ## 🚀 Live Demo
 
 - **Frontend Dashboard:** [https://fullstack-integrated-admin-client.vercel.app/dashboard](https://fullstack-integrated-admin-client.vercel.app/dashboard)
+  - **Login Credentials:**
+    - Username: `admin`
+    - Password: `admin1234`
 - **API Documentation:** [https://truthful-insight-production.up.railway.app/api-docs](https://truthful-insight-production.up.railway.app/api-docs)
 
 ## 🎯 Project Highlights
