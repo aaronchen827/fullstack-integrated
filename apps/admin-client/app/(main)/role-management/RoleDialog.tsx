@@ -39,12 +39,12 @@ type Props = {
   role: Role | null
   menus: Menu[]
   onClose: () => void
-  onSave: (roleData: Partial<Role>) => void
+  onSave: (roleData: Partial<any>) => void
   onDelete: () => void
 }
 
 export default function RoleDialog({ open, mode, role, menus, onClose, onSave, onDelete }: Props) {
-  const [formData, setFormData] = useState<Partial<Role>>({
+  const [formData, setFormData] = useState<Partial<any>>({
     name: '',
     description: '',
     menuIds: [],
@@ -56,7 +56,7 @@ export default function RoleDialog({ open, mode, role, menus, onClose, onSave, o
       setFormData({
         name: role.name,
         description: role.description,
-        menuIds: role.menus?.map((menu) => menu.id) || [],
+        menuIds: role?.menus?.map((menu) => menu.id) || [],
       })
     } else {
       setFormData({

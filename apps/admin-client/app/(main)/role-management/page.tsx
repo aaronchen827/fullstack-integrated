@@ -19,25 +19,8 @@ import {
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material'
 import RoleDialog from './RoleDialog'
 import { fetchClientApi } from '@/lib/fetcher/client'
-
-type Role = {
-  id: number
-  name: string
-  description: string
-  menus: Menu[]
-  createTime: string
-  updateTime: string
-}
-
-type Menu = {
-  id: number
-  menuName: string
-  parentId?: number
-  icon?: string
-  showStatus: number
-  menuUrl?: string
-  path?: string
-}
+import { Role } from '@/types/role'
+import { Menu } from '@/types/menu'
 
 export default function RoleManagementPage() {
   const [roles, setRoles] = React.useState<Role[]>([])
@@ -87,7 +70,7 @@ export default function RoleManagementPage() {
     setDialogOpen(true)
   }
 
-  const handleSave = async (roleData: Partial<Role>) => {
+  const handleSave = async (roleData: Partial<any>) => {
     try {
       if (dialogMode === 'add') {
         await fetchClientApi('/admin/role/create', { data: roleData })
@@ -166,8 +149,12 @@ export default function RoleManagementPage() {
                     ))}
                   </Box>
                 </TableCell>
-                <TableCell>{new Date(role.createTime).toLocaleString()}</TableCell>
-                <TableCell>{new Date(role.updateTime).toLocaleString()}</TableCell>
+                <TableCell>
+                  {role.createTime ? new Date(role.createTime).toLocaleString() : '-'}
+                </TableCell>
+                <TableCell>
+                  {role.updateTime ? new Date(role.updateTime).toLocaleString() : '-'}
+                </TableCell>
                 <TableCell align="right">
                   {role.name !== 'Super Admin' && (
                     <Box sx={{ display: 'flex' }}>

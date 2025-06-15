@@ -6,7 +6,7 @@ export interface Menu {
   showStatus: number
   menuUrl?: string
   path?: string
+  createTime?: string
+  updateTime?: string
   children?: Menu[]
-  createTime: string
-  updateTime: string
 }
