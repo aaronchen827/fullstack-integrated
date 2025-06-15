@@ -78,7 +78,12 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
     e.preventDefault()
     setLoading(true)
     try {
-      await onSave(formData)
+      // If editing and password is empty, remove it from the update data
+      const dataToSave = { ...formData }
+      if (mode === 'edit' && !dataToSave.password) {
+        delete dataToSave.password
+      }
+      await onSave(dataToSave)
     } finally {
       setLoading(false)
     }
@@ -128,7 +133,7 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
               onClick={async () => {
                 setLoading(true)
                 try {
-                  await onSave({})
+                  await onDelete()
                 } finally {
                   setLoading(false)
                 }
@@ -175,13 +180,13 @@ export default function UserDialog({ open, mode, user, roles, onClose, onSave, o
               />
               <TextField
                 margin="normal"
-                label="Password"
+                label={mode === 'add' ? 'Password' : 'New Password (leave blank to keep current)'}
                 name="password"
                 type="password"
                 value={formData.password}
                 fullWidth
                 onChange={handleTextChange}
-                required
+                required={mode === 'add'}
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     '&:hover fieldset': {
