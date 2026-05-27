@@ -16,7 +16,7 @@
     "@mui/material": "^5.15.21",
     "@mui/x-tree-view": "^6.0.0-alpha.1",
     "@reduxjs/toolkit": "^2.8.2",
-    "next": "15.3.2",
+    "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.4",
