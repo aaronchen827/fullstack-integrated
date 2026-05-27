@@ -34,7 +34,12 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>()
+  } = useForm<LoginFormInputs>({
+    defaultValues: {
+      username: 'admin',
+      password: 'admin1234',
+    },
+  })
 
   const router = useRouter()
   const dispatch = useDispatch()
